@@ -14,7 +14,7 @@ if ($purl === '1'): ?>
 <!-- Body Section -->
 <div class="row">
     <!-- Body Upper Left -->
-    <div class="col s6 ">
+    <div class="col s6">
         <!-- Image -->
         <?php if ($product['image'] === '' || $product['image'] === NULL): ?>
             <?= __('There is no image for this product.') ?>        
@@ -22,19 +22,22 @@ if ($purl === '1'): ?>
             <?= $this->HTML->image($product['image'], ['pathPrefix' => 'upload/images/', 'alt' => $product['name'], 'width' => '100%', 'height' => '380']) ?>
         <?php endif; ?>        
     </div>
-
+    
+    <!-- Body Upper Center Spacing -->
+    <div class="col s1"></div>
+    
     <!-- Body Upper Right -->
-    <div class="col s6">
+    <div class="col s5">
         <!-- Name -->
         <div class="row">
-            <div class="col s4">Product Name</div>
+            <div class="col s4 b">Product Name</div>
             <div class="col s1"> - </div>
             <div class="col s7"><?= __($product['name']) ?></div>
         </div>
 
         <!-- Model -->
         <div class="row">
-            <div class="col s4">Model</div>
+            <div class="col s4 b">Model</div>
             <div class="col s1"> - </div>
             <div class="col s7">
                 <?php if ($product['model'] === NULL || $product['model'] === ''): ?>
@@ -47,42 +50,42 @@ if ($purl === '1'): ?>
 
         <!-- Price -->
         <div class="row">
-            <div class="col s4">Price</div>
+            <div class="col s4 b">Price</div>
             <div class="col s1"> - </div>
             <div class="col s7"><?= $this->Number->format($product['price']) ?> MMK</div>
         </div>
 
         <!-- Company -->
         <div class="row">
-            <div class="col s4">Company</div>
+            <div class="col s4 b">Company</div>
             <div class="col s1"> - </div>
             <div class="col s7"><?= __($product['company']['name']) ?></div>
         </div>
 
         <!-- Categories -->
         <div class="row">
-            <div class="col s4">Categories</div>
+            <div class="col s4 b">Categories</div>
             <div class="col s1"> - </div>
             <div class="col s7"><?= __($product['category']['name']) ?></div>
         </div>
 
         <!-- Created Date -->
         <div class="row">
-            <div class="col s4">Created Date</div>
+            <div class="col s4 b">Created Date</div>
             <div class="col s1"> - </div>
             <div class="col s7"><?= h($product->created->i18nFormat('yyyy-MM-dd')) ?></div>
         </div>
 
         <!-- Modified Date -->
         <div class="row">
-            <div class="col s4">Modified Date</div>
+            <div class="col s4 b">Modified Date</div>
             <div class="col s1"> - </div>
             <div class="col s7"><?= h($product->modified->i18nFormat('yyyy-MM-dd')) ?></div>
         </div>
 
         <!-- Description -->
         <div class="row">
-            <div class="col s4">Description</div>
+            <div class="col s4 b">Description</div>
             <div class="col s1"> - </div>
             <div class="col s7">
                 <?php if ($product['description'] === NULL || $product['description'] === ''): ?>
@@ -105,8 +108,9 @@ if ($purl === '1'): ?>
         <?php if ($product['video'] === NULL || $product['video'] === ''): ?>
             <?= __('There is no video for this product.') ?>        
         <?php else: ?>
-            <hr>
+            <br>
             <h5><?= __('Content Video of '.$product['name']) ?></h5>
+            <hr><br>
             <?= $this->HTML->media([$product['video'], ['src' => $product['video'], 'type' => "video/ogg'"]], ['controls', 'pathPrefix' => 'upload/videos/', 'alt' => $product['name'], 'width' => '100%']) ?>
         <?php endif; ?>   
     </div>
@@ -114,3 +118,6 @@ if ($purl === '1'): ?>
 </div>
 <!-- Body Lower End -->
 <!-- Body Section End -->
+
+<!-- Body Upper Right Bold -->
+<style>.b{font-weight:bold}</style>

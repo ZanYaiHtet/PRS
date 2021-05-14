@@ -82,7 +82,7 @@
         <h5><?= __('Category Infomation') ?></h5>
         <hr>
         <div class="row">
-            <div class="col s3">
+            <div class="col s3 mtop">
                 <?= __('Product Category') ?>
             </div>
             <!-- Drop Down List -->
@@ -106,7 +106,7 @@
         <h5><?= __('Company Information') ?></h5>
         <hr>
         <div class="row">
-            <div class="col s3">
+            <div class="col s3 mtop">
                 <?= __('Product Company') ?>
             </div>
             <!-- Drop Down List -->
@@ -136,6 +136,10 @@
 </div>
 <!-- End Body Section -->
 
+<!-- Margin Top For Drop Down List -->
+<style>.mtop {margin-top:1rem}</style>
+
+<!-- Dynamically Drop Down List Script -->
 <script>
     $(document).ready(function() {
         $('select').formSelect();

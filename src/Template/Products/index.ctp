@@ -23,6 +23,17 @@
       font: inherit;
       outline: 0;
     }
+    i.small.material-icons.prefix {
+        margin-left: -2rem;
+        color: gray;
+        
+    }
+    #search {
+        padding-right: 1.8rem;
+    }
+    #button {
+        margin-right: 2rem;
+    }
 </style>
 
 <!-- Product List Page -->
@@ -37,7 +48,7 @@
         <!-- Search Button -->
         <div class="col s4 Flatsearch">
             <?= $this->Form->text('search', ['id' => 'search', 'size' => '100', 'maxlength' => '100', 'placeholder' => 'Search...']) ?>
-            <?= $this->Form->button('<i class="material-icons prefix">search</i>', ['type' => 'button' ,'id' => 'button']); ?>      
+            <?= $this->Form->button('<i class="small material-icons prefix">search</i>', ['type' => 'button' ,'id' => 'button']); ?>      
         </div>
         
         <!-- Empty Spacing -->
@@ -142,8 +153,12 @@
     }
     
     $('#search').keyup(function() {
-      var searchkey = $(this).val();
-      searchProducts(searchkey);
+        if (!$(this).val() || $(this).val().trim() == '') {
+            location.reload();
+        } else {
+            var searchkey = $(this).val();
+            searchProducts(searchkey);
+        }
     });
 
     // Controller Query Link with Ajax

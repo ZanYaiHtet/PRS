@@ -5,10 +5,10 @@
     <thead>
         <tr>
             <th scope="col"><?= __('No') ?></th>
-            <th scope="col"><?= $this->Paginator->sort('Product') ?></th>
-            <th scope="col"><?= $this->Paginator->sort('Price') ?></th>
-            <th scope="col"><?= $this->Paginator->sort('Status') ?></th>
-            <th scope="col"><?= $this->Paginator->sort('Trending') ?></th>
+            <th scope="col"><?= __('Product') ?></th>
+            <th scope="col"><?= __('Price') ?></th>
+            <th scope="col"><?= __('Status') ?></th>
+            <th scope="col"><?= __('Trending') ?></th>
             <th scope="col"><?= __('Action') ?></th>
         </tr>
     </thead>
