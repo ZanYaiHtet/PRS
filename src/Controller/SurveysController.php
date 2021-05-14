@@ -223,7 +223,7 @@ class SurveysController extends AppController
 
     public function search()
     {
-        // $this->request->allowMethod(['ajax','patch', 'post', 'put']);
+        $this->request->allowMethod('ajax');
 
         $keyword = $this->request->getQuery('keyword');
 

@@ -177,12 +177,12 @@
     </style>
 
     <div class="row center my-submit">
-        <div class="col s6"></div>
-        <div class="col s6">
-            <button id="btnSave" class="btn waves-effect waves-light btn-medium indigo" type="submit" name="action">submit
-                <i class="material-icons left">save</i>
+        <div class="col s7"></div>
+        <div class="col s3">
+            <button id="btnSave" class="btn waves-effect waves-light btn-medium indigo right" type="submit" name="action">submit
             </button>
         </div>
+        <div class="col s2"></div>
     </div>
 </form>
 

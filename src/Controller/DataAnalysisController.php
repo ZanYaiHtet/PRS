@@ -52,7 +52,7 @@ class DataAnalysisController extends AppController
         $products = TableRegistry::get('products');
         $answers = TableRegistry::get('answers');
         $connection = ConnectionManager::get('default');
-        $results1 = $connection->execute('SELECT distinct image as pimage,name as pname, model_no as pmodel_no from `answers`, `products` WHERE products.id=answers.product_id and
+        $results1 = $connection->execute('SELECT distinct image as pimage,name as pname, model_no as pmodel_no, price as pprice from `answers`, `products` WHERE products.id=answers.product_id and
          answers.rating>3 and del_flg=\'not\'')->fetchAll('assoc');
         // echo ($results1);
 
@@ -61,8 +61,7 @@ class DataAnalysisController extends AppController
     public function category()
     {
         $categories = TableRegistry::get('categories');
-
-        $query = $categories->find('all');
+        $query = $categories->find('all')->where(['del_flg' => "not"]);
         $this->set('categories_list', $query);
     }
     public function product()

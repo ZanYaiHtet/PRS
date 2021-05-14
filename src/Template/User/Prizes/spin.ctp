@@ -8,7 +8,7 @@
 </head>
 <style>
     body {
-        font-family: arial;
+
         background-color: #fff;
     }
 
@@ -17,7 +17,7 @@
         background-image: url("../img/wheel_back.png");
         background-repeat: no-repeat;
         background-position: center;
-        padding-top: 5px;
+        padding-top: 20px;
     }
 
     /* Do some css reset on selected elements */
@@ -35,6 +35,10 @@
     }
 
     /* Styles for the power selection controls */
+    table {
+        margin-top: 2rem;
+    }
+
     table.power {
         background-color: #cccccc;
         cursor: pointer;
@@ -70,27 +74,28 @@
 </style>
 
 <body>
-    <div align="center" style="margin-top: 1rem;" class="card">
-        <div class="card-content">
-            <table cellpadding="0" cellspacing="0" border="0">
-                <tr>
-                    <td></td>
-                    <td width="465" height="540" class="the_wheel" onClick="startSpin();">
-                        <canvas style="margin-top:1rem" class="clickable" id="canvas" width="465" height="480">
-                            <p style="color: white;" align="center">Sorry, your browser doesn't support canvas. Please try another.</p>
-                        </canvas>
-                    </td>
-                    <td></td>
-                </tr>
-            </table>
-        </div>
+    <div align="center">
+
+        <table cellpadding="0" cellspacing="0" border="0">
+            <tr>
+                <td></td>
+                <td width="465" height="582" class="the_wheel" id="spinWheel" onClick="startSpin();">
+                    <canvas id="canvas" width="465" height="541">
+                        <p style="{color: white}" align="center">Sorry, your browser doesn't support canvas. Please try another.</p>
+                    </canvas>
+                </td>
+                <td></td>
+            </tr>
+        </table>
     </div><br><br>
 
     <form action=" <?php
                     echo Cake\Routing\Router::url([
                         'controller' => 'prizes', 'action' => 'getscores/' . $Luser['id']
                     ]); ?>" method="post" id="form">
+
         <input type="hidden" value="" id="custom_scores" name="custom_scores">
+        <input type="hidden" value="" id="userType" name="userType">
 
     </form>
     <!-- comment routes.php line 58 -->
@@ -146,9 +151,12 @@
         // -------------------------------------------------------
         // Click handler for spin button.
         // -------------------------------------------------------
+        spinWheel = document.querySelector("#spinWheel");
+
         function startSpin() {
             theWheel.animation.spins = 10;
             theWheel.startAnimation();
+            spinWheel.onclick = false;
         }
         // -------------------------------------------------------
         // Function for reset button.
@@ -157,6 +165,7 @@
             theWheel.stopAnimation(false); // Stop the animation, false as param so does not call callback function.
             theWheel.rotationAngle = 0; // Re-set the wheel angle to 0 degrees.
             theWheel.draw(); // Call draw to render changes to the wheel.
+            startSpin();
         }
 
         function alertPrize(indicatedSegment) {

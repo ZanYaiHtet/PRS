@@ -11,12 +11,12 @@
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
-                <th scope="col"><?= $this->Paginator->sort('No') ?></th>
+                <th scope="col">No</th>
                 <th scope="col"><?= $this->Paginator->sort('name') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('description') ?></th>
+                <th scope="col" width="40%"><?= $this->Paginator->sort('description') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('product_id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('category_id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('created') ?></th>
+                <!-- <th scope="col"><?= $this->Paginator->sort('created') ?></th> -->
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
@@ -34,7 +34,7 @@
                     <td><?= h($survey->description) ?></td>
                     <td><?= $survey->has('product') ? $survey->product->name : '' ?></td>
                     <td><?= $survey->has('category') ? $survey->category->name : '' ?></td>
-                    <td><?= h($survey->created) ?></td>
+                    <!-- <td><?= h($survey->created) ?></td> -->
                     <td class="actions">
                         <?= $this->Html->link(__('Answer'), ['action' => 'answer', $survey->id]) ?>
                     </td>

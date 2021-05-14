@@ -119,12 +119,12 @@
     </div> -->
 
     <div class="row center my-submit">
-        <div class="col s6"></div>
-        <div class="col s6">
-            <button id="btnSave" class="btn waves-effect waves-light btn-medium indigo" type="submit" name="action">back
-                <i class="material-icons left">arrow_back</i>
+        <div class="col s7"></div>
+        <div class="col s3">
+            <button id="btnSave" class="btn waves-effect waves-light btn-medium indigo right" type="submit" name="action">back
             </button>
         </div>
+        <div class="col s2"></div>
     </div>
 </form>
 

@@ -31,6 +31,7 @@ class PrizesController extends AppController
         if ($this->request->is('post')) {
 
             $prizes = $this->request->getData('prize_name');
+            
             $pr_count = $this->Prizes->find()->where(['prize_name' => $prizes])->count();
             $currDateTime = date("Y-m-d H:i:s");
             if ($pr_count >= 1) {

@@ -16,14 +16,14 @@
                 <tr>
                     <th scope="col">No</th>
                     <th scope="col"><?= $this->Paginator->sort('name') ?></th>
-                    <th scope="col"><?= $this->Paginator->sort('description') ?></th>
+                    <th scope="col" width="40%"><?= $this->Paginator->sort('description') ?></th>
                     <th scope="col"><?= $this->Paginator->sort('product_id') ?></th>
                     <th scope="col"><?= $this->Paginator->sort('category_id') ?></th>
                     <!-- <th scope="col"><?= $this->Paginator->sort('del_flg') ?></th> -->
                     <th scope="col"><?= $this->Paginator->sort('admin_id') ?></th>
-                    <th scope="col"><?= $this->Paginator->sort('created') ?></th>
+                    <!-- <th scope="col"><?= $this->Paginator->sort('created') ?></th> -->
                     <!-- <th scope="col"><?= $this->Paginator->sort('modified') ?></th> -->
-                    <th scope="col" class="actions"><?= __('Actions') ?></th>
+                    <th scope="col" class="actions" width="10%"><?= __('Actions') ?></th>
                 </tr>
             </thead>
             <tbody>
@@ -43,7 +43,7 @@
                         <td><?= $survey->has('category') ? h($survey->category->name) : '' ?></td>
                         <!-- <td><?= h($survey->del_flg) ?></td> -->
                         <td><?= $survey->has('admin') ? h($survey->admin->email) : '' ?></td>
-                        <td><?= h($survey->created->i18nFormat('yyyy-MM-dd HH:mm:ss')) ?></td>
+                        <!-- <td><?= h($survey->created->i18nFormat('yyyy-MM-dd HH:mm:ss')) ?></td> -->
                         <!-- <td><?= h($survey->modified) ?></td> -->
                         <td class="actions">
                             <?= $this->Html->link(__('View'), ['action' => 'view', $survey->id]) ?>
@@ -123,8 +123,12 @@
 <script>
     $('document').ready(function() {
         $('#search').keyup(function() {
-            var searchkey = $(this).val();
-            searchSurveys(searchkey);
+            if (!$(this).val() || $(this).val().trim() == '') {
+                location.reload();
+            } else {
+                var searchkey = $(this).val();
+                searchSurveys(searchkey);
+            }
         });
 
         function searchSurveys(keyword) {

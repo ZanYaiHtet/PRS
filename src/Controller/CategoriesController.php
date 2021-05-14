@@ -117,11 +117,19 @@ class CategoriesController extends AppController
     {
         $this->request->allowMethod(['post', 'delete']);
         $category = $this->Categories->get($id);
-        $category->del_flg = 'deleted';
-        if ($this->Categories->save($category)) {
-            $this->Flash->success(__('The category has been successfully deleted.'));
+        // Delete Disable
+        $query = $this->Categories->Answers->find('all', array('conditions' => array('Answers.category_id' => $id)))->select(['id']);
+        $data = $query->toArray();
+        $categories  = implode(' ', $data);
+        if (!empty($categories)) {
+            $this->Flash->error(__('The category is being used in survey so that could not be deleted.'));
         } else {
-            $this->Flash->error(__('The category could not be deleted. Please, try again.'));
+            $category->del_flg = 'deleted';
+            if ($this->Categories->save($category)) {
+                $this->Flash->success(__('The category has been successfully deleted.'));
+            } else {
+                $this->Flash->error(__('The category could not be deleted. Please, try again.'));
+            }
         }
 
         return $this->redirect(['action' => 'index']);

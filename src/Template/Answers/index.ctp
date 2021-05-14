@@ -10,12 +10,12 @@
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
-                <th scope="col"><?= $this->Paginator->sort('no') ?></th>
+                <th scope="col">No</th>
                 <th scope="col"><?= $this->Paginator->sort('name') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('description') ?></th>
+                <th scope="col" width="50%"><?= $this->Paginator->sort('description') ?></th>
                 <!-- <th scope="col"><?= $this->Paginator->sort('product_id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('category_id') ?></th> -->
-                <th scope="col"><?= $this->Paginator->sort('answered date') ?></th>
+                <th scope="col" width="15%"><?= $this->Paginator->sort('answered date') ?></th>
                 <!-- <th scope="col"><?= $this->Paginator->sort('modified') ?></th> -->
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
@@ -32,7 +32,7 @@
                     <td><?= $no++ ?></td>
                     <td><?= h($answer->survey->name) ?></td>
                     <td><?= h($answer->survey->description) ?></td>
-                    <td><?= h($answer->created->i18nFormat('yyyy-MM-dd HH:mm:ss')) ?></td>
+                    <td><?= h($answer->created->i18nFormat('yyyy-MM-dd')) ?></td>
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $answer->survey->id]) ?>
                     </td>

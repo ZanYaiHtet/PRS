@@ -171,7 +171,11 @@ class ProductsController extends AppController
             // Failing Process
             $this->Flash->error(__('The product could not be updated. Please, try again.'));
         }
+<<<<<<< HEAD
 
+=======
+      
+>>>>>>> 95256c5344bc41729e21dea66d19b69138266399
         //Drop Down List companies and categories
         $categories_list = $this->Products->Categories->find('all')->where(['del_flg' => "not"]);
         $companies_list = $this->Products->Companies->find('all')->where(['del_flg' => "not"]);

@@ -1,141 +1,73 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	<title>Update Prize</title>
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
-<!-- Google Fonts -->
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
-<!-- Bootstrap core CSS -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
-<!-- Material Design Bootstrap -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
-<style type="text/css">
-	
-	.form-elegant .font-small {
-font-size: 0.8rem; }
+  <title>Update Prize</title>
+  <style type="text/css">
+    .card {
+      margin-top: 5rem;
 
-.form-elegant .z-depth-1a {
--webkit-box-shadow: 0 2px 5px 0 rgba(55, 161, 255, 0.26), 0 4px 12px 0 rgba(121, 155, 254, 0.25);
-box-shadow: 0 2px 5px 0 rgba(55, 161, 255, 0.26), 0 4px 12px 0 rgba(121, 155, 254, 0.25); }
+    }
 
-.form-elegant .z-depth-1-half,
-.form-elegant .btn:hover {
--webkit-box-shadow: 0 5px 11px 0 rgba(85, 182, 255, 0.28), 0 4px 15px 0 rgba(36, 133, 255, 0.15);
-box-shadow: 0 5px 11px 0 rgba(85, 182, 255, 0.28), 0 4px 15px 0 rgba(36, 133, 255, 0.15); 
-}
-
-.card{
-	margin-left:400px;
-	width: 300px;
-	margin-top: 50px;
-}
-.md-form{
-  margin-left:30px;
-  margin-top: 25px;
-}
-.mb-3{
-  margin-left:30px;
-  margin-top: 50px;
-  
-}
-.md-form label{
-  margin-top: -7px;
-  font-size:12px;
-}
-
-a {
-    color: #ffffff;
-    text-decoration: none;
-}
-
-a:hover {
-    color: #ffffff;
-    text-decoration: none;
-}
-button{
-    background-color:#5cb85c;
-    color: white;
-    width: 78px;
-    height: 33px;
-    border-color:green;
-    border-radius:15px;
-}
-
-
-</style>
+    .my-row {
+      margin-bottom: 0.4rem;
+    }
+  </style>
 
 </head>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<!-- Bootstrap tooltips -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
-<!-- Bootstrap core JavaScript -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
-<!-- MDB core JavaScript -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js">
-	
-</script>
-
 <body>
-<section class="form-elegant">
+  <div class="container">
+    <!--Form without header-->
+    <div class="card">
 
-  <!-- Grid row -->
-  <div class="row">
-  
-
-    <!-- Grid column -->
-    <div class="col-md-9 col-lg-7 col-xl-5">
-
-      <!--Form without header-->
-      <div class="card">
-
-        <div class="card-body mx-4">
+      <div class="card-content">
         <?= $this->Form->create($prize) ?>
-
-          <!--Header-->
-          <div class="text-center">
-            <h3 class="dark-grey-text mb-5"><strong>Update Prize</strong></h3>
-          </div>
-
-          <!--Body-->
-          <div class="md-form">
-          <?= $this->Form->control('prize_name',['required']) ?>
-          </div>
-
-          <div class="md-form">
-          <?= $this->Form->control('scores',['required']) ?>
-          </div>
-
-       
-          <div class="text-center mb-3" style="margin-top: 50px;">
-         
-          
-          <?= $this->Form->button(__('Update')) ?>
-          <button class="button"><?= $this->Html->link(__('Prize List'), ['action' => 'prizelist']) ?></button>
-   
-          
-          </div>
-          
-
-          <?= $this->Form->end() ?>
-
+        <span class="card-title center">Update Prize</span>
+        <div class="input-field col s6">
+          <!-- <input type="text" placeholder="Prize Name" name="prize_name" required /> -->
+          <?php
+          echo $this->Form->control('prize_name', array(['required'], 'label' => '', 'class' => 'validate', 'type' => 'text', 'placeholder' => 'Prize Name'));
+          ?>
         </div>
 
-      
-      
-
+        <div class="input-field col s6">
+          <?php
+          echo $this->Form->control('scores', array(['required'], 'label' => '', 'class' => 'validate', 'type' => 'number', 'placeholder' => 'Scores'));
+          ?>
+        </div>
       </div>
-      <!--/Form without header-->
+      <div class="card-action">
+        <div class="row my-row">
+          <div class="col s4"></div>
+          <div class="col s2">
+            <?= $this->Form->button(__('Update'), array('class' => 'btn indigo')) ?>
+          </div>
+          <div class="col s3">
+            <?= $this->Html->link(__('Cancel'), array('controller' => 'Prizes', 'action' => 'prizelist'), array('class' => 'btn indigo')) ?>
+
+          </div>
+          <div class="col s2"></div>
+        </div>
+      </div>
+
+
+
+
+      <?= $this->Form->end() ?>
 
     </div>
-    <!-- Grid column -->
+
+
+
 
   </div>
-  <!-- Grid row -->
+  <!--/Form without header-->
 
-</section>
+
+
+  </div>
+
 </body>
+
 </html>
-
-

@@ -1,56 +1,74 @@
 <?php
+
 /**
-  * @var \App\View\AppView $this
-  * @var \App\Model\Entity\Luckydraw[]|\Cake\Collection\CollectionInterface $luckydraw
-  */
+ * @var \App\View\AppView $this
+ * @var \App\Model\Entity\Luckydraw[]|\Cake\Collection\CollectionInterface $luckydraw
+ */
 
- //Cutom CSS and JS Files
-echo $this->Html->css('materialize');
-echo $this->Html->css('materialize.min');
-echo $this->Html->css('luckydraw_index');
+//Cutom CSS and JS Files
+// echo $this->Html->css('luckydraw_index');
 
-echo $this->Html->script('jquery-3.5.1');
-echo $this->Html->script('jquery-3.5.1.min');
-echo $this->Html->script('materialize');
-echo $this->Html->script('materialize.min');
 ?>
+<h3><?= __('Scores') ?></h3>
+<div class="row">
+  <?= $this->Html->link(__('New Score'),  array('controller' => 'Luckydraw', 'action' => 'add'), ['id'=>'btnNew','class' => 'waves-effect waves-light btn right indigo']) ?>
+</div>
+<div class="table-content">
+  <table cellpadding="0" cellspacing="0">
+    <thead>
+      <tr>
+        <th scope="col">No</th>
+        <th scope="col"><?= $this->Paginator->sort('scores') ?></th>
+        <th scope="col"><?= $this->Paginator->sort('color') ?></th>
+        <th scope="col" width="15%">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <?php $page = $this->Paginator->counter(['format' => __('{{page}}')]);
+      $no = 1;
+      if ($page > 2)
+        $no = $page * 20 - 19;
+      else if ($page == 2)
+        $no = $page * 10 + 1;
+      ?>
+      <?php foreach ($luckydraw as $luckydraw) : ?>
+        <tr>
+          <td><?= $this->Number->format($no++) ?></td>
+          <td><?= h($luckydraw->scores) ?></td>
+          <td>
+            <div style="background-color:<?= h($luckydraw->color) ?> ; width:60px;height:20px;"></div>
+          </td>
+          <td>
+            <?= $this->Html->link(__('Edit'), ['action' => 'edit', $luckydraw->id]) ?>
+            <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $luckydraw->id], ['confirm' => __('Are you sure you want to delete # {0}?', $luckydraw->id)]) ?>
+          </td>
+        </tr>
+      <?php endforeach; ?>
+    </tbody>
+  </table>
+</div>
+<div class="paginator">
+  <ul class="pagination">
+    <?= $this->Paginator->first('<< ' . __('first')) ?>
+    <?= $this->Paginator->prev('< ' . __('previous')) ?>
+    <?= $this->Paginator->numbers() ?>
+    <?= $this->Paginator->next(__('next') . ' >') ?>
+    <?= $this->Paginator->last(__('last') . ' >>') ?>
+  </ul>
+  <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
+</div>
 
-<center>
-    <h3><?= __('Score List For Luckydraw') ?></h3>
-    <?= $this->Html->link("New", array('controller' => 'Luckydraw','action'=> 'add'), array( 'class' => 'button','id'=>'btnNew')) ?>
-     <div id="luckydraw-border">
-        <div class="row" id="luckydraw-title">
-            <div class="col s2"><?= $this->Paginator->sort('id') ?></div>
-            <div class="col s2"><?= $this->Paginator->sort('scores') ?></div>
-            <div class="col s2"><?= $this->Paginator->sort('color') ?></div>
-            <div class="col s2"><?= $this->Paginator->sort('created') ?></div>
-            <div class="col s2"><?= $this->Paginator->sort('modified') ?></div>
-            <div class="col s2"><?= __('Actions') ?></div>
-            </div>
-            <hr>
-            <?php foreach ($luckydraw as $luckydraw): ?>
-            <div class="row" id="luckydraw-body">
-            <div class="col s2"><?= $this->Number->format($luckydraw->id) ?></div>
-            <div class="col s2"><?= h($luckydraw->scores) ?></div>
-            <div class="col s2"><p id="color" style="background-color:<?= h($luckydraw->color) ?> ;"><?= h($luckydraw->color) ?></p></div>
-            <div class="col s2"><?= h($luckydraw->created) ?></div>
-            <div class="col s2"><?= h($luckydraw->modified) ?></div>
-            <div class="col s2">
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $luckydraw->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $luckydraw->id], ['confirm' => __('Are you sure you want to delete # {0}?', $luckydraw->id)]) ?>
-                    </div>
-                    </div>
-            <?php endforeach; ?>
-    <div>
-</center>
-    <div class="paginator">
-        <ul class="pagination">
-            <?= $this->Paginator->first('<< ' . __('first')) ?>
-            <?= $this->Paginator->prev('< ' . __('previous')) ?>
-            <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next') . ' >') ?>
-            <?= $this->Paginator->last(__('last') . ' >>') ?>
-        </ul>
-        <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
-    </div>
-
+<style>
+  table {
+    width: 80%;
+    margin-left: 7rem;
+  }
+  h3 {
+    margin-top: 2rem;
+    margin-left: 6rem;
+  }
+  #btnNew{
+    margin-right: 6rem;
+    margin-bottom: -1rem;
+  }
+</style>

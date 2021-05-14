@@ -1,35 +1,68 @@
 <?php
+
 /**
-  * @var \App\View\AppView $this
-  */
+ * @var \App\View\AppView $this
+ */
 
-//Cutom CSS and JS Files
-echo $this->Html->css('materialize');
-echo $this->Html->css('materialize.min');
-echo $this->Html->css('luckydrawAdd');
-
-echo $this->Html->script('jquery-3.5.1');
-echo $this->Html->script('jquery-3.5.1.min');
-echo $this->Html->script('materialize');
-echo $this->Html->script('materialize.min');
 ?>
-<center>
-    <legend>Update Score For Lucky Draw</legend>
-<div id="addLuckydrawBorder">
-    <?= $this->Form->create($luckydraw) ?>
-        <div class="row">
-        <div class="col s6" id="label_scores">Scores</div>
-        <div class="col s6"><?php echo $this->Form->control('scores',array('label' => false));?> </div>
+<!-- Grid column -->
+<div class="container">
+
+  <!--Form without header-->
+  <div class="card">
+
+    <div class="card-content">
+      <?= $this->Form->create($luckydraw) ?>
+
+      <!--Header-->
+     <center> <span class="card-title">Update Score</span></center>
+      <div class="input-field col s6">
+        <?php echo $this->Form->control('scores', array('label' => false,'id' => 'scores')); ?>
+      </div>
+      <div class="input-field col s6">
+        <?php echo $this->Form->control('color', array('label' => false, 'type' => 'color', 'id' => 'color')); ?>
+      </div>
+    </div>
+    <div class="card-action">
+      <div class="row my-row">
+        <div class="col s3"></div>
+        <div class="col s3">
+          <?= $this->Form->button(__('Update'), ['action' => 'add', 'id' => 'btnUpdate', 'class' => 'waves-effect waves-light btn right indigo']) ?>
         </div>
-        <div class="row" id="color_row">
-        <div class="col s6" id="label">Color</div>
-        <div class="col s1"><?php echo $this->Form->control('color',array('label' => false,'type'=>'color'));?>  </div>
+        <div class="col s3">
+          <?= $this->Html->link("Cancel", array('controller' => 'Luckydraw', 'action' => 'index'), array('class' => 'waves-effect waves-light btn right indigo', 'id' => 'btnCancel')) ?>
         </div>
-        <div class="row">
-        <div class="col s6"><?= $this->Form->button(__('Update'),['action' => 'add','id'=>'btnSave']) ?></div>
-        <div class="col s3"><?= $this->Html->link("Cancel", array('controller' => 'Luckydraw','action'=> 'index'), array( 'class' => 'button','id'=>'btnCancel')) ?></div>
-        <?= $this->Form->end() ?>
-        </div>
-        
+        <div class="col s3"></div>
+      </div>
+    </div>
+    <?= $this->Form->end() ?>
+  </div>
 </div>
-</center>
+
+<style>
+  .container {
+    margin-top: 5rem;
+    width: 60%;
+  }
+  #scores{
+  width: 60%;
+  margin-left: 80px;
+}
+
+  #btnUpdate {
+    margin-right: 10px;
+    margin-bottom: -1rem;
+  }
+
+  #btnCancel {
+    margin-right: -10px;
+    margin-bottom: -1rem;
+  }
+
+  #color {
+    width: 100px;
+    height: 30px;
+    margin-left: 80px;
+    margin-top: 10px;
+  }
+</style>

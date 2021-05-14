@@ -119,7 +119,7 @@ function getFirstPid()
     $firstId = 1;
     $proFirst = TableRegistry::get('products');
     $pquery = $proFirst->find('all');
-    $pquery = $proFirst->find()->order(['id' => 'ASC']);
+    $pquery = $proFirst->find()->where(['del_flg' => "not"])->order(['id' => 'ASC']);
     foreach ($pquery as $result1) {
         $firstId = $result1->id;
     }
@@ -130,13 +130,11 @@ function getColunCharts($productID)
 {
     $chart_product_name = "";
     $proData = TableRegistry::get('products');
-
-    $pquery = $proData->find('all')->where(['id' => $productID]);
+    $pquery = $proData->find('all')->where(['id' => $productID, 'del_flg' => "not"]);
     foreach ($pquery as $result1) {
         $chart_product_name = $result1->name;
     }
     $dataChart = getAvgRating($productID);
-
     $arrData1 = array(
         "chart" => array(
             "animation" => "0",

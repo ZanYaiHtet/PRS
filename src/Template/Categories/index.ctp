@@ -15,7 +15,7 @@
                 <th scope="col">No</th>
                 <th scope="col"><?= $this->Paginator->sort('name') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('created') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('modified') ?></th>
+
                 <!-- <th scope="col"><?= $this->Paginator->sort('del_flg') ?></th> -->
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
@@ -27,12 +27,12 @@
                     <td><?= $this->Number->format($var++) ?></td>
                     <td><?= h($category->name) ?></td>
                     <td><?= date('Y-m-d', strtotime(h($category->created))); ?></td>
-                    <td><?= date('Y-m-d', strtotime(h($category->modified))); ?></td>
+
                     <!-- <td><?= h($category->del_flg) ?></td> -->
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $category->id]) ?>
                         <?= $this->Html->link(__('Edit'), ['action' => 'edit', $category->id]) ?>
-                        <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $category->id], ['confirm' => __('Deleting Category will all delete related surveys and products. Are you sure to delete # {0}?', $category->name)]) ?>
+                        <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $category->id], ['confirm' => __('Are you sure to delete # {0}?', $category->name)]) ?>
                     </td>
 
                 </tr>

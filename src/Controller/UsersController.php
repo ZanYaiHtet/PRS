@@ -37,13 +37,38 @@ class UsersController extends AppController
         $this->paginate = [
             'contain' => ['Admins', 'Scores']
         ];
-        // $data = $this->Users->find('all')->where(del_flg => 'not');
         $data = $this->Users->find('all', array('conditions' => array('Users.del_flg' => 'not')));
         $users = $this->paginate($data);
 
         $this->set(compact('users'));
         $this->set('_serialize', ['users']);
     }
+    public function search()
+    {
+
+        $this->request->allowMethod('ajax');
+
+        $keyword = $this->request->getQuery('keyword');
+
+        $query = $this->Users->find('all', [
+            'conditions' => ([
+                'Or' => [
+                    ['Users.name LIKE' => '%' . $keyword . '%'],
+                    ['Users.email like' => '%' . $keyword . '%'], ['Users.gender like' => '%' . $keyword . '%'],
+                    ['Users.phone like' => '%' . $keyword . '%'], ['Users.premium_flg like' => '%' . $keyword . '%'],
+                    ['Users.birthdate like' => '%' . $keyword . '%']
+                ],
+                'AND' => ['Users.del_flg' => 'not']
+            ]),
+            'order' => ['id' => 'DESC'],
+            'limit' => 10
+        ]);
+        $users = $this->paginate($query);
+
+        $this->set(compact('users'));
+        $this->set('_serialize', ['users']);
+    }
+
 
     /**
      * View method
@@ -322,6 +347,6 @@ class UsersController extends AppController
     {
         parent::beforeFilter($event);
         if ($this->Auth->user())
-            $this->Auth->allow(['delete', 'add', 'index', 'edit', 'view']);
+            $this->Auth->allow(['delete', 'add', 'index', 'edit', 'view', 'search']);
     }
 }

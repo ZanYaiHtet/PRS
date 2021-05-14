@@ -125,9 +125,7 @@
         <!-- End Form -->
     </div>
     <!-- End Main Body -->
-    
     <div class="col s1"></div>
-
 </div>
 <!-- End Body Section -->
 
